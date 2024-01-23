@@ -1,0 +1,16 @@
+// https://leetcode.com/problems/maximum-distance-between-a-pair-of-values
+
+class Solution {
+public:
+    int maxDistance(vector<int>& nums1, vector<int>& nums2) {
+        int m = int(nums1.size()), n = int(nums2.size());
+        int ans = 0;
+        for (int i = 0; i < m; ++i) {
+            int k = nums2.rend() - lower_bound(nums2.rbegin(), nums2.rend(), nums1[i]);
+            if (k > 0) {
+                ans = max(ans, k - i - 1);
+            }
+        }
+        return ans;
+    }
+};
